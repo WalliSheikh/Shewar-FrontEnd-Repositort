@@ -1,0 +1,27 @@
+<button type="button" class="btn btn-primary btn-lg rounded-pill shadow-lg" (click)="goBack()"><i class="bi bi-arrow-left-circle-fill"></i> Go Back</button>
+<br><br><br>
+<div class="card border-primary mb-3">
+  <div class="card-header bg-transparent border-primary">
+    <p class="h4 text-primary">Order list</p>
+  </div>
+  <div class="card-body text-primary">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let product of products">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="mb-1">Name: {{product.name}}</h5>
+            <p class="mb-1">Quantity: {{product.quantity}}</p>
+          </div>
+          <h4 class="text-muted">Total Price: {{product.totalPrice}} PKR</h4>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer bg-transparent border-primary">
+    <h1 class="display-6 text-primary text-end">Total Amount: {{totalPayment}} PKR</h1>
+  </div>
+</div>
+<br>
+<button type="button" class="btn btn-primary btn-lg rounded-pill shadow-lg float-end text-green" (click)="confirmOrder()"><i class="bi bi-arrow-left-circle-fill"></i> Confirm Order</button>
+
+

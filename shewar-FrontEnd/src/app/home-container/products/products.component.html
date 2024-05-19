@@ -1,0 +1,15 @@
+<span class="product-container" 
+     (mouseenter)="showPopUp = true"
+     (mouseleave)="showPopUp = false">
+  <div class="product-image">
+    <img [src]="getImageUrl(product.imageUrl)" alt="{{ product.name }}">
+  </div>
+  <div class="product-details">
+    <h3>{{ product.name }}</h3>
+    <p >Description: {{ product.description }}</p>
+    <div *ngIf="showPopUp" class="average-price">Average Price: {{ product.price }} PKR
+      <div style="margin-top: 20px;"></div>
+      <button class="cool-button" style="border-radius: 20px; background-color: rgb(79, 165, 79); color: white; margin: auto; display: block;" (click)="addToCart()">Add to Cart</button>
+      </div>
+  </div>
+</span>

@@ -1,0 +1,20 @@
+<app-home-layout></app-home-layout>
+<br>
+<h3 class="top-products-heading" *ngIf="!showCheckout && !orderConfirmation && !orderCompleted">OUR TOP PRODUCTS</h3>
+<div class="horizontal-products-container" *ngIf="!showCheckout && !orderConfirmation && !orderCompleted">
+  <ng-container *ngFor="let product of products">
+    <app-products [product]="product"></app-products>
+  </ng-container>
+</div>
+<hr>
+<h3 class="top-products-heading">OUR CATEGORIES</h3>
+<div class="horizontal-products-container">
+  <ng-container *ngFor="let category of categories">
+    <app-categories [category]="category">
+    </app-categories>
+  </ng-container>
+</div>
+<app-cart *ngIf="showPricing"></app-cart>
+<app-check-out *ngIf="showCheckout"></app-check-out>
+<app-confirm-order *ngIf="orderConfirmation"></app-confirm-order>
+<app-order-completed *ngIf="orderCompleted"></app-order-completed>
