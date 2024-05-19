@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Product } from '../../models/product.model';
 import { Subscription } from 'rxjs';
 import { ProductService } from '../services/product.service';
