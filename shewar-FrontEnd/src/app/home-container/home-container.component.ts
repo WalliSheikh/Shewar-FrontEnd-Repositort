@@ -1,8 +1,11 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { Subscription } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { Category } from '../../models/category.model';
+import { MatDialog } from '@angular/material/dialog';
+import { CartComponent } from './cart/cart.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 
 @Component({
     selector: 'app-home-container',
@@ -11,10 +14,11 @@ import { Category } from '../../models/category.model';
 })
 export class HomeContainerComponent {
     homeContainerSubscription: Subscription;
-    showPricing: boolean = false;
     showCheckout: boolean = false;
+    showMyOrders: boolean = false;
     orderConfirmation: boolean = false;
     orderCompleted: boolean = false;
+    dialogRef: any
     products: Product[] = [
         {
             name: "Beef Tenderloin",
@@ -128,34 +132,51 @@ export class HomeContainerComponent {
         }
     ];
 
-    constructor(private productService: ProductService) {
+    constructor(private productService: ProductService, private dialog: MatDialog) {
         this.homeContainerSubscription = this.productService.getHomeContainer().subscribe(value => {
             if (value == 'cart') {
-                this.showPricing = true;
-                this.showCheckout = false;
-            } else if (value == 'checkout') {
+                this.openPopUp(CartComponent);
+            } else if (value == 'check-out') {
                 this.showCheckout = true;
-                this.showPricing = false;
+                this.orderConfirmation = false;
+                this.orderCompleted = false;
+                this.closePopUp();
             } else if (value == 'confirm-order') {
                 this.orderConfirmation = true;
                 this.showCheckout = false;
-                this.showPricing = false;
-            } else if(value == 'order-completed'){
+                this.orderCompleted = false;
+            } else if (value == 'order-completed') {
                 this.orderCompleted = true;
-                this.showPricing = false;
                 this.showCheckout = false;
                 this.orderConfirmation = false;
-            } else {
-                this.showPricing = false;
+
+            } else if (value == 'my-order') {
+                this.openPopUp(MyOrderComponent);
+            }
+            else {
                 this.showCheckout = false;
                 this.orderConfirmation = false;
                 this.orderCompleted = false;
+                this.closePopUp();
             }
         });
     }
 
     ngOnDestroy() {
         this.homeContainerSubscription.unsubscribe();
+    }
+
+    openPopUp(component: any) {
+        this.dialogRef = this.dialog.open(component, {
+            width: '800px', // Adjust width as needed
+            height: '600px' // Adjust height as needed
+        });
+    }
+
+    closePopUp() {
+        if (this.dialogRef) {
+            this.dialogRef.close();
+        }
     }
 
 

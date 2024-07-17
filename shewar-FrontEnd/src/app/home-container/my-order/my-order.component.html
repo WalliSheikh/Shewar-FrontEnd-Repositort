@@ -1,1 +1,30 @@
-<p>my-order works!</p>
+<h3 *ngIf="orders.length > 0" class="text-center mb-4" style="color: #007BFF; font-weight: bold; font-size: 24px;">Your Orders</h3>
+<div class="accordion" id="orderAccordion" style="margin: 0 10px;">
+  <ng-container *ngIf="orders.length > 0; else noOrders">
+    <div class="card mb-4" *ngFor="let order of orders" style="box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); border-radius: 15px;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="cursor: pointer; background-color: #f8f9fa; border-radius: 15px 15px 0 0;">
+        <h5 class="mb-0" style="font-size: 18px;">
+          Order Placed on: {{ order.time | date:'dd/MM/yyyy h:mm a' }}
+        </h5>
+        <button class="btn btn-primary" (click)="order.expanded = !order.expanded">
+          {{ order.expanded ? 'Hide Details' : 'Show Details' }}
+        </button>
+      </div>
+      <div *ngIf="order.expanded">
+        <div class="card-body" style="background-color: #e9ecef; border-radius: 0 0 15px 15px;">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let product of order.products" style="border: none; padding: 12px; background-color: #fff; margin-bottom: 6px; border-radius: 8px;">
+              {{ product.name }} - Quantity: {{ product.quantity }}, Price: {{ product.totalPrice | currency }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noOrders>
+    <div class="text-center p-4" style="background-color: #f0f0f0; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: auto; width: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+      <h5 style="color: #ff6347; font-weight: bold;">No Orders Found</h5>
+    </div>
+  </ng-template>
+</div>
+

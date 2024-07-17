@@ -68,7 +68,7 @@
           <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
           <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+          <li class="nav-item cta cta-colored"><span class="nav-link" (click)="showMyOrders()"><span class="icon-shopping_cart"></span>{{getOrdersCount()}}</span></li>
           <li>
           <div class="search-box">
             <input class="search-input" type="text" name="" placeholder="Search-Your-Meat-Now">
