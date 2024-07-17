@@ -12,7 +12,7 @@ constructor(private productService:ProductService){
 totalPayment:number = this.productService.getCheckOutPayment();
 products = this.productService.getAllProducts();
 goBack(){
-  this.productService.setHomeContainer('cart');
+  this.productService.setHomeContainer('home');
 }
 confirmOrder(){
   this.productService.setHomeContainer('confirm-order');

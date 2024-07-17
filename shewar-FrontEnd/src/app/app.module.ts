@@ -17,6 +17,7 @@ import { ConfirmOrderComponent } from './home-container/confirm-order/confirm-or
 import { OrderCompletedComponent } from './home-container/order-completed/order-completed.component';
 import { MyOrderComponent } from './home-container/my-order/my-order.component';
 import { CategoriesComponent } from './home-container/categories/categories.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,7 @@ import { CategoriesComponent } from './home-container/categories/categories.comp
     SlickCarouselModule,
     SatPopoverModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

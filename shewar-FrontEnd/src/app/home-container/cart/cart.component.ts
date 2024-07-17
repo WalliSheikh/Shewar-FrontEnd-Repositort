@@ -37,6 +37,6 @@ export class CartComponent {
   }
 
   checkOut(){
-    this.productService.setHomeContainer('checkout');
+    this.productService.setHomeContainer('check-out');
   }
 }

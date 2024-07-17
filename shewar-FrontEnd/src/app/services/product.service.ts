@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Order } from '../../models/order.model';
 
 @Injectable()
 export class ProductService {
     private products: any[] = JSON.parse(localStorage.getItem('products') || '[]');
     homeContainerSubject = new BehaviorSubject<string>('');
+    orders: Order[] = [];
     constructor() { }
 
     addProduct(product: any): void {
-        if (!this.products.some(existingProduct => existingProduct.name === product.name)) {
+        if (this.products.length > 0) {
+            if (!this.products.some(existingProduct => existingProduct.name === product.name)) {
+                this.products.push(product);
+            }
+        } else {
             this.products.push(product);
         }
     }
@@ -27,7 +33,20 @@ export class ProductService {
     getHomeContainer(): Observable<any> {
         return this.homeContainerSubject.asObservable();
     }
-    getCheckOutPayment(){
+    getCheckOutPayment() {
         return this.products.reduce((acc, product) => acc + product.totalPrice, 0);
+    }
+
+    addOrder(order: any) {
+        this.orders.push(order);
+        this.products = [];
+    }
+
+    getOrderCount() {
+        return this.orders.length;
+    }
+
+    getAllOrders() {
+        return this.orders;
     }
 }
