@@ -1,0 +1,22 @@
+/* about.component.css */
+.about-section {
+    padding: 60px 0;
+  }
+  
+  .about-section h2 {
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    color: #343a40;
+  }
+  
+  .about-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  .about-section img {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+  }
+  

@@ -23,20 +23,35 @@ export class CartComponent {
     this.productService.setHomeContainer('home');
   }
 
-  getValue(value: string, product: any): void {
-    product.quantity = parseInt(value, 10);
+  continueShopping(){
+    this.productService.setProducts(this.products);
+    this.productService.setHomeContainer('continue');
+  }
+
+  getValue(product: any): void {
     product.totalPrice = product.price * product.quantity;
+  }
+
+  increaseQuantity(product : any){
+    product.quantity++;
+    this.getValue(product)
+  }
+
+  decreaseQuantity(product : any){
+    product.quantity--;
+    this.getValue(product)
   }
 
   deleteProduct(product: any) {
     this.products = this.products.filter((item: any) => item !== product);
     this.productService.setProducts(this.products);
     if (this.products.length === 0) {
-      this.goBack();
+      this.continueShopping();
     }
   }
 
   checkOut(){
+    this.productService.setProducts(this.products);
     this.productService.setHomeContainer('check-out');
   }
 }

@@ -18,6 +18,7 @@ import { OrderCompletedComponent } from './home-container/order-completed/order-
 import { MyOrderComponent } from './home-container/my-order/my-order.component';
 import { CategoriesComponent } from './home-container/categories/categories.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AboutComponent } from './about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ConfirmOrderComponent,
     OrderCompletedComponent,
     MyOrderComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

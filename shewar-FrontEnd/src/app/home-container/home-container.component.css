@@ -24,3 +24,63 @@
     margin-right: 0;
   }
   
+
+  .custom-dialog-container {
+    /* Set max height to accommodate 3 products */
+    max-height: 300px; /* This should correspond to the approximate height of 3 products */
+    overflow-y: auto; /* Scrollable content once it exceeds 3 products */
+  }
+  
+  /* Optional: Customize the scrollbar for a modern look */
+  .custom-dialog-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-dialog-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+  }
+  
+  .custom-dialog-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+
+  .horizontal-products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the row of 4 products */
+    gap: 15px; /* Small spacing between products */
+  }
+  
+  .product-item {
+    flex: 1 1 20%; /* Set width to 20% to allow 4 items + gaps (around 25%) */
+    max-width: 250px; /* Maximum width of a product item */
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Space between rows */
+  }
+  
+  @media (max-width: 1024px) {
+    .product-item {
+      flex: 1 1 40%; /* On medium screens, 2 products per row */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .product-item {
+      flex: 1 1 100%; /* On small screens, 1 product per row */
+    }
+  }
+  
+  .search-input {
+    width: 300px; /* Adjust width as needed */
+  }
+  
+  .search-btn {
+    border-radius: 0 0.375rem 0.375rem 0; /* Adjust the button radius */
+  }
+  
+  
+  
+  
+  
+  

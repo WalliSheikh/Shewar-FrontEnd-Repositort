@@ -1,18 +1,45 @@
-<button type="button" class="close rounded-circle bg-danger text-white" aria-label="Close" style="width: 50px; height: 50px;" (click)="goBack()">
+<!-- Close Button -->
+<button type="button" class="close rounded-circle bg-danger text-white" aria-label="Close"
+  style="width: 10vw; height: 10vw; max-width: 50px; max-height: 50px; margin: 1rem;" (click)="goBack()">
   <span aria-hidden="true" class="fs-3">&times;</span>
 </button>
-<br><br>
-<div *ngFor="let product of products" class="d-flex align-items-center bg-light p-3 my-2 rounded shadow-sm">
-    <p class="text-dark fw-bold me-1 mb-0">Name: {{ product?.name }}</p>
-    <div class="input-group mx-1" style="flex-grow: 0; width: auto;">
-      <span class="input-group-text">Qty</span>
-      <input #quantity type="number" class="form-control" style="max-width: 60px;" min="1" value="product.quantity" (input)="getValue(quantity.value,product)" placeholder={{product.quantity}}>
-    </div>
-    <p class="text-success fw-bold me-1 mb-0">Total Price: {{ product.totalPrice ? product.totalPrice : product.price }} PKR</p>
-    <button type="button" class="btn btn-danger ms-auto" (click)="deleteProduct(product)"><i class="bi bi-trash-fill"></i> Delete</button>
-</div>
 <br>
-<div class="d-flex justify-content-center">
-    <button type="button" class="btn btn-success btn-lg rounded-pill shadow-lg" (click)="checkOut()"><i class="bi bi-arrow-right-circle-fill"></i> Checkout</button>
+
+
+<!-- Product List -->
+<div *ngFor="let product of products" class="d-flex align-items-center bg-light p-3 my-2 rounded shadow-sm">
+  <!-- Product Name -->
+  <p class="text-dark fw-bold me-3 mb-0">Name: {{ product?.name }}</p>
+
+  <!-- Quantity Input with Plus/Minus Buttons -->
+  <div class="input-group mx-3" style="flex-grow: 1; max-width: 250px;">
+    <span class="input-group-text">Qty</span>
+    <button class="btn btn-outline-secondary" type="button" (click)="decreaseQuantity(product)">-</button>
+    <input #quantity class="form-control text-center" [value]="product.quantity" placeholder="{{product.quantity}}"
+      style="width: 60px;">
+    <button class="btn btn-outline-secondary" type="button" (click)="increaseQuantity(product)">+</button>
+  </div>
+
+  <!-- Total Price -->
+  <p class="text-success fw-bold me-3 mb-0">Total Price: {{ product.totalPrice ? product.totalPrice : product.price }}
+    PKR</p>
+
+  <!-- Delete Button -->
+  <button type="button" class="btn btn-danger ms-auto" (click)="deleteProduct(product)">
+    <i class="bi bi-trash-fill"></i> Delete
+  </button>
 </div>
+
+<!-- Checkout and Continue Shopping Buttons -->
+<div class="d-flex justify-content-center mt-4">
+  <button type="button" class="btn btn-success btn-lg rounded-pill shadow-lg me-4" (click)="continueShopping()">
+    <i class="bi bi-arrow-left-circle-fill"></i> Continue Shopping
+  </button>
+  <button type="button" class="btn btn-success btn-lg rounded-pill shadow-lg ms-4" (click)="checkOut()">
+    <i class="bi bi-arrow-right-circle-fill"></i> Checkout
+  </button>
+</div>
+
+
+<!-- Spacing at the bottom -->
 <br><br><br>

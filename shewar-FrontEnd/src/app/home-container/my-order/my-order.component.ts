@@ -11,9 +11,5 @@ export class MyOrderComponent {
 orders : Order[] = this.productService.getAllOrders();
 constructor(private productService : ProductService){}
 
-// ngOnInit(){
-//   this.orders = this.productService.getAllOrders();
-//   console.log(this.orders); 
-// }
 
 }

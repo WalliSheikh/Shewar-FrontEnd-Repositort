@@ -1,12 +1,14 @@
-<app-home-layout></app-home-layout>
+<app-home-layout  *ngIf="showTopProducts || showCategories || showCheckout || orderCompleted || orderConfirmation"></app-home-layout>
 <br>
-<h3 class="top-products-heading" *ngIf="!showCheckout && !orderConfirmation && !orderCompleted">OUR TOP PRODUCTS</h3>
-<div class="horizontal-products-container" *ngIf="!showCheckout && !orderConfirmation && !orderCompleted">
-  <ng-container *ngFor="let product of products">
-    <app-products [product]="product"></app-products>
-  </ng-container>
+<div *ngIf="showTopProducts">
+  <h3 class="top-products-heading" >OUR TOP PRODUCTS</h3>
+  <div class="horizontal-products-container">
+    <ng-container *ngFor="let product of topProducts">
+      <app-products [product]="product"></app-products>
+    </ng-container>
+  </div>
 </div>
-<div *ngIf="!showCheckout && !orderConfirmation && !orderCompleted">
+<div *ngIf="showCategories">
   <hr>
   <h3 class="top-products-heading">OUR CATEGORIES</h3>
   <div class="horizontal-products-container">
@@ -19,4 +21,33 @@
 <app-check-out *ngIf="showCheckout"></app-check-out>
 <app-confirm-order *ngIf="orderConfirmation"></app-confirm-order>
 <app-order-completed *ngIf="orderCompleted"></app-order-completed>
+
+<div *ngIf="!showTopProducts && !showCategories && !showCheckout && !orderCompleted && !orderConfirmation" class="container mt-3">
+  <div class="row mb-3">
+    <div class="col-12 d-flex justify-content-end">
+      <div class="input-group">
+        <input #searchInput (input)="getInputValue(searchInput.value)" class="form-control search-input" type="text" placeholder="Search Your Meat Now">
+        <div class="input-group-append">
+          <button (click)="getInputValue(searchInput.value)" class="btn btn-primary search-btn" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <ng-container *ngFor="let product of selectedCateogryProducts">
+      <div class="col-12 col-md-3 mb-3">
+        <div class="product-item">
+          <app-products [product]="product"></app-products>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<app-about *ngIf="showCategories || showTopProducts"></app-about>
+
+
+
 <!-- <app-my-order></app-my-order> -->

@@ -12,9 +12,13 @@ export class ProductService {
     addProduct(product: any): void {
         if (this.products.length > 0) {
             if (!this.products.some(existingProduct => existingProduct.name === product.name)) {
+                product.quantity = 1
+                product.totalPrice = product.price 
                 this.products.push(product);
             }
         } else {
+            product.quantity = 1
+            product.totalPrice = product.price 
             this.products.push(product);
         }
     }

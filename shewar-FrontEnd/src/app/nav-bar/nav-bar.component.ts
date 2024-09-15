@@ -11,8 +11,18 @@ export class NavBarComponent {
   constructor(private productService : ProductService){
   }
 
+  toggleSearch() {
+    const searchBox = document.querySelector('.search-box');
+    searchBox?.classList.toggle('active');
+  }
+  
+
   getOrdersCount(){
     return this.productService.getOrderCount();
+  }
+
+  goHome(){
+    this.productService.setHomeContainer('home');
   }
 
   showMyOrders(){

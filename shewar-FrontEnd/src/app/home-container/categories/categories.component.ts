@@ -17,7 +17,7 @@ export class CategoriesComponent {
   }
   
   getProducts(){
-    this.productService.setHomeContainer('products');
+    this.productService.setHomeContainer({category: this.category.name});
 
   }
 }
